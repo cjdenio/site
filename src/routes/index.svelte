@@ -79,4 +79,10 @@
 <div class="mb-8">
 	<a href="https://github.com/cjdenio" target="_blank" rel="noopener noreferrer">GitHub</a> &middot;
 	<a href="https://twitter.com/CalebDenio" target="_blank" rel="noopener noreferrer">Twitter</a>
+
+	<img
+		src="https://cloud-nhe3q534r-hack-club-bot.vercel.app/0image.png"
+		alt="ohyeahwoofyeah"
+		class="w-5 block mx-auto mt-5"
+	/>
 </div>
