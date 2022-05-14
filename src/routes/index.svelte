@@ -3,10 +3,6 @@
 	import Faq from '../components/faq.svelte';
 </script>
 
-<svelte:head>
-	<title>Caleb Denio</title>
-</svelte:head>
-
 <div class="flex justify-center items-center mt-32 mb-20">
 	<img src={me} alt="me" class="w-40 rounded-md mr-8 -rotate-3 scale-110 shadow-lg" />
 
