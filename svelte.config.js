@@ -8,11 +8,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: vercel({
-			edge: false,
-			external: [],
-			split: true
-		})
+		adapter: vercel()
 	}
 };
 
