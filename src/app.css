@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		@apply bg-zinc-900 text-zinc-300;
+	}
+}
+
+@layer components {
+	a {
+		@apply text-zinc-400 underline;
+	}
+}
