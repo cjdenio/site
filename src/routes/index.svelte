@@ -1,6 +1,7 @@
 <script>
 	import me from '../assets/me.png';
 	import Faq from '../components/faq.svelte';
+	import Project from '../components/Project.svelte';
 </script>
 
 <div class="flex justify-center items-center mt-32 mb-20">
@@ -14,6 +15,37 @@
 
 <h2 class="text-3xl">I'm a <strong>programmer</strong>.</h2>
 <h6 class="text-xs mb-20">(that means i write code)</h6>
+
+<h1
+	class="text-md text-zinc-600 font-bold uppercase before:h-px before:flex-1 before:bg-zinc-600 before:block before:mr-5 flex items-center after:h-px after:ml-5 after:flex-1 after:bg-zinc-600 mb-10"
+>
+	Projects
+</h1>
+
+<div class="grid grid-cols-2 gap-6 mb-10">
+	<Project
+		name="Resolute"
+		logo="https://github.com/resoluteapp.png"
+		description="A &quot;reply later&quot; button that lives everywhere."
+		github="https://github.com/resoluteapp/resolute"
+		site="https://useresolute.com"
+		flavor="work in progress"
+	/>
+	<Project
+		name="Shorty"
+		logo="https://emojicdn.elk.sh/🔗"
+		description="A self-hosted, high-performance link shortener."
+		github="https://github.com/cjdenio/shorty"
+		flavor="i didn't make a logo for this"
+	/>
+	<Project
+		name="Underpass"
+		description="An open-source HTTP tunneling tool (similar to ngrok)."
+		github="https://github.com/cjdenio/underpass"
+		flavor="usable but poorly built"
+		logo="https://emojicdn.elk.sh/🧑‍💻"
+	/>
+</div>
 
 <h1
 	class="text-md text-zinc-600 font-bold uppercase before:h-px before:flex-1 before:bg-zinc-600 before:block before:mr-5 flex items-center after:h-px after:ml-5 after:flex-1 after:bg-zinc-600 mb-10"
