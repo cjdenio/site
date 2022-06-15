@@ -3,19 +3,15 @@ import { useRef } from "react";
 
 const FETCH_GUESTBOOK = gql`
   query FetchGuestbook {
+    me {
+      username
+    }
+
     guestbook {
       id
       username
       message
       favoriteColor
-    }
-  }
-`;
-
-const ME = gql`
-  query Me {
-    me {
-      username
     }
   }
 `;
@@ -30,7 +26,6 @@ const SIGN_GUESTBOOK = gql`
 
 export default function Guestbook() {
   const { loading, error, data } = useQuery(FETCH_GUESTBOOK);
-  const { data: meData } = useQuery(ME);
   const [signGuestbook] = useMutation(SIGN_GUESTBOOK, {
     refetchQueries: [FETCH_GUESTBOOK],
   });
@@ -54,24 +49,7 @@ export default function Guestbook() {
   return (
     <div className="mb-10 text-left">
       <form className="mb-5 relative" onSubmit={handleSubmit} ref={form}>
-        {meData?.me && (
-          <div className="flex items-center mb-3">
-            <img
-              src={`https://github.com/${meData.me.username}.png`}
-              alt={`${meData.me.username}'s avatar`}
-              className="w-5 rounded-full mr-2"
-            />
-
-            <a
-              href={`https://github.com/${meData.me.username}`}
-              target="_blank"
-              className="no-underline hover:underline text-zinc-400"
-            >
-              {meData.me.username}
-            </a>
-          </div>
-        )}
-        {!meData?.me && (
+        {!data.me && (
           <div className="absolute -inset-3 rounded-md bg-zinc-900/80 backdrop-blur-sm flex flex-col items-center justify-center">
             <a
               href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`}
@@ -80,6 +58,23 @@ export default function Guestbook() {
               Sign in with GitHub
             </a>
             <small className="text-xs mt-3">(it'll be quick, i promise)</small>
+          </div>
+        )}
+        {data.me && (
+          <div className="flex items-center mb-3">
+            <img
+              src={`https://github.com/${data.me.username}.png`}
+              alt={`${data.me.username}'s avatar`}
+              className="w-5 rounded-full mr-2"
+            />
+
+            <a
+              href={`https://github.com/${data.me.username}`}
+              target="_blank"
+              className="no-underline hover:underline text-zinc-400"
+            >
+              {data.me.username}
+            </a>
           </div>
         )}
         <textarea
