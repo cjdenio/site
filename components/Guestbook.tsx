@@ -44,6 +44,8 @@ export default function Guestbook() {
     const favoriteColor = e.target.color.value;
 
     await signGuestbook({ variables: { message, favoriteColor } });
+
+    form.current.reset();
   }
 
   if (loading) return <p>Loading...</p>;
