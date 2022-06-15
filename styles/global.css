@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  a {
+    @apply text-zinc-400 underline;
+  }
+
+  .btn {
+    @apply no-underline text-zinc-300 bg-purple-700 hover:bg-purple-800 active:bg-purple-900 border border-purple-500 hover:border-purple-600 focus:border-purple-600 rounded-lg px-3 py-2 transition-colors shadow-inner;
+  }
+}

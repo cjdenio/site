@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model GuestbookEntry {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  username      String
+  name          String?
+  message       String
+  favoriteColor String?
+}
