@@ -54,7 +54,7 @@ export default function Guestbook() {
   return (
     <div className="mb-10 text-left">
       <form className="mb-5 relative" onSubmit={handleSubmit} ref={form}>
-        {meData.me && (
+        {meData?.me && (
           <div className="flex items-center mb-3">
             <img
               src={`https://github.com/${meData.me.username}.png`}
@@ -71,7 +71,7 @@ export default function Guestbook() {
             </a>
           </div>
         )}
-        {!meData.me && (
+        {!meData?.me && (
           <div className="absolute -inset-3 rounded-md bg-zinc-900/80 backdrop-blur-sm flex flex-col items-center justify-center">
             <a
               href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`}
