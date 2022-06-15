@@ -1,6 +1,7 @@
 import { createServer } from "@graphql-yoga/node";
 import { PrismaClient } from "@prisma/client";
 import cookie from "cookie";
+import type { NextApiRequest, NextApiResponse } from "next";
 import * as jose from "jose";
 
 const prisma = new PrismaClient();
@@ -89,7 +90,10 @@ const server = createServer({
   },
 });
 
-export default async (req, res) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   await server(req, res);
   await prisma.$disconnect();
-};
+}

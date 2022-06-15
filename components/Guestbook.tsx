@@ -71,6 +71,7 @@ export default function Guestbook() {
             <a
               href={`https://github.com/${data.me.username}`}
               target="_blank"
+              rel="noreferrer"
               className="no-underline hover:underline text-zinc-400"
             >
               {data.me.username}
@@ -116,6 +117,7 @@ export default function Guestbook() {
                 <a
                   href={`https://github.com/${entry.username}`}
                   target="_blank"
+                  rel="noreferrer"
                   className="no-underline hover:underline text-zinc-400"
                   style={{ color: entry.favoriteColor }}
                 >

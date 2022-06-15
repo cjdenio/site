@@ -112,7 +112,7 @@ export default function Home() {
           </Faq>
           <Faq question="I recognize you from somewhere...">
             Perhaps you've heard of my startup,{" "}
-            <a href="https://gadzooks.me" target="_blank">
+            <a href="https://gadzooks.me" target="_blank" rel="noreferrer">
               Gadzooks
             </a>
             .
