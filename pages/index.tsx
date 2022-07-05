@@ -103,9 +103,9 @@ export default function Home() {
           <Faq question="Are you Mario?">Yes.</Faq>
           <Faq question="Where you at?">
             A rather ambiguously worded question if you ask me. Physically?
-            Emotionally? Professionally? Physically, I'm in the southern New
-            Hampshire area. Professionally... well, ask me again in a year.
-            Emotionally, somewhere in South Dakota. I definitely feel emotions.
+            Emotionally? Professionally? Physically, I'm in the Burlington,
+            Vermont area. Professionally, coding 'n stuff. Emotionally,
+            somewhere in South Dakota. I definitely feel emotions.
           </Faq>
           <Faq question="Wait a minute... aren't you the guy behind the hit game Among Us?">
             No. I don't know why you would have thought that.
