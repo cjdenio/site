@@ -6,7 +6,13 @@ import { useEffect } from "react";
 
 const client = new ApolloClient({
   uri: "/api/graphql",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Rating: {
+        keyFields: ["item"],
+      },
+    },
+  }),
 });
 
 export default function MyApp({ Component, pageProps }: AppProps) {

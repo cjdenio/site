@@ -9,6 +9,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 const RATING = gql`
   query Rating($item: String!) {
     rating(item: $item) {
+      item
       stars
       reviewCount
     }
@@ -18,6 +19,7 @@ const RATING = gql`
 const REVIEW = gql`
   mutation Review($item: String!, $stars: Int!) {
     review(item: $item, stars: $stars) {
+      item
       stars
       reviewCount
     }
@@ -28,9 +30,7 @@ export function Review({ id }) {
   const { data } = useQuery(RATING, {
     variables: { item: id },
   });
-  const [review] = useMutation(REVIEW, {
-    refetchQueries: [{ query: RATING, variables: { item: id } }],
-  });
+  const [review] = useMutation(REVIEW);
   const [_stars, _setStars] = useState<number>(null);
 
   const stars = _stars ?? (Math.round(data?.rating?.stars) || 0);
