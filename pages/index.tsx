@@ -2,6 +2,7 @@ import Head from "next/head";
 import Faq from "../components/Faq";
 import Guestbook from "../components/Guestbook";
 import Project from "../components/Project";
+import ReviewMe, { Review } from "../components/ReviewMe";
 
 export default function Home() {
   return (
@@ -24,11 +25,13 @@ export default function Home() {
       <div className="px-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className="flex justify-center items-center mt-32 mb-20">
-            <img
-              src="/me.png"
-              alt="me"
-              className="w-40 rounded-md mr-8 -rotate-3 scale-110 shadow-lg"
-            />
+            <ReviewMe id="me" className="-rotate-3 scale-110 mr-8">
+              <img
+                src="/me.jpeg"
+                alt="me"
+                className="w-40 rounded-md shadow-lg"
+              />
+            </ReviewMe>
 
             <div className="text-left">
               <h1 className="text-5xl font-bold">Caleb Denio</h1>
@@ -36,10 +39,13 @@ export default function Home() {
             </div>
           </div>
 
-          <h2 className="text-3xl">
-            I'm a <strong>programmer</strong>.
-          </h2>
-          <h6 className="text-xs mb-20">(that means i write code)</h6>
+          <ReviewMe id="programmer" className="inline-block mb-20">
+            <h2 className="text-3xl">
+              I'm a <strong>programmer</strong>.
+            </h2>
+
+            <h6 className="text-xs">(that means i write code)</h6>
+          </ReviewMe>
 
           <h1 className="text-md text-zinc-600 font-bold uppercase before:h-px before:flex-1 before:bg-zinc-600 before:block before:mr-5 flex items-center after:h-px after:ml-5 after:flex-1 after:bg-zinc-600 mb-10">
             Projects
@@ -178,6 +184,8 @@ export default function Home() {
             >
               Twitter
             </a>
+            <p className="mt-5 mb-1">Like this site? Leave a review :)</p>
+            <Review id="site" />
             <img
               src="https://cloud-nhe3q534r-hack-club-bot.vercel.app/0image.png"
               alt="ohyeahwoofyeah"

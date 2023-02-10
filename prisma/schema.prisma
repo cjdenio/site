@@ -15,3 +15,13 @@ model GuestbookEntry {
   message       String
   favoriteColor String?
 }
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userKey   String
+  createdAt DateTime @default(now())
+  stars     Int
+  item      String
+
+  @@unique([userKey, item])
+}

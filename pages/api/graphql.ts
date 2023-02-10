@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import cookie from "cookie";
 import type { NextApiRequest, NextApiResponse } from "next";
 import * as jose from "jose";
+import { GraphQLError } from "graphql";
 
 const prisma = new PrismaClient();
 
@@ -19,13 +20,22 @@ const typeDefs = `
     username: String!
   }
 
+  type Rating {
+    item: String!
+    stars: Float!
+    reviewCount: Int!
+  }
+
   type Query {
     guestbook: [GuestbookEntry!]!
     me: User
+    rating(item: String!): Rating!
+    reviewItems: [Rating!]!
   }
 
   type Mutation {
     createGuestbookEntry(message: String!, favoriteColor: String): GuestbookEntry
+    review(stars: Int!, item: String!): Rating
   }
 `;
 
@@ -42,6 +52,34 @@ const resolvers = {
           username: context.user,
         };
       }
+    },
+    async rating(parent, { item }, context, info) {
+      const result = await prisma.review.aggregate({
+        _avg: { stars: true },
+        _count: true,
+        where: { item: item },
+      });
+
+      return {
+        stars: result._avg.stars || 0,
+        reviewCount: result._count,
+        item,
+      };
+    },
+    async reviewItems() {
+      return await prisma.review
+        .groupBy({
+          by: ["item"],
+          _avg: { stars: true },
+          _count: true,
+        })
+        .then((result) =>
+          result.map((review) => ({
+            stars: review._avg.stars,
+            reviewCount: review._count,
+            item: review.item,
+          }))
+        );
     },
   },
   Mutation: {
@@ -61,6 +99,44 @@ const resolvers = {
         },
       });
     },
+    async review(parent, { stars, item }, context, info) {
+      if (!context.userKey) {
+        throw new GraphQLError("eee");
+      }
+
+      const review = await prisma.review.findUnique({
+        where: { userKey_item: { userKey: context.userKey, item } },
+      });
+
+      if (review && review.stars == stars) {
+        await prisma.review.delete({ where: { id: review.id } });
+      } else if (review) {
+        await prisma.review.update({
+          where: { id: review.id },
+          data: { stars: Math.min(Math.max(1, stars), 5) },
+        });
+      } else {
+        await prisma.review.create({
+          data: {
+            stars: Math.min(Math.max(1, stars), 5),
+            item,
+            userKey: context.userKey,
+          },
+        });
+      }
+
+      const result = await prisma.review.aggregate({
+        _avg: { stars: true },
+        _count: true,
+        where: { item: item },
+      });
+
+      return {
+        stars: result._avg.stars || 0,
+        reviewCount: result._count,
+        item,
+      };
+    },
   },
 };
 
@@ -72,8 +148,9 @@ const server = createServer({
   graphiql: true,
   endpoint: "/api/graphql",
   async context({ request }) {
+    const cookies = cookie.parse(request.headers.get("Cookie") || "");
+
     try {
-      const cookies = cookie.parse(request.headers.get("Cookie") || "");
       const jwt = cookies.gadzooks_auth;
 
       const { payload } = await jose.jwtVerify(
@@ -83,9 +160,12 @@ const server = createServer({
 
       return {
         user: payload.username,
+        userKey: cookies.user_key,
       };
     } catch (e) {
-      return {};
+      return {
+        userKey: cookies.user_key,
+      };
     }
   },
 });

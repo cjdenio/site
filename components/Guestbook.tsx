@@ -1,5 +1,6 @@
 import { useQuery, gql, useMutation } from "@apollo/client";
 import { useRef } from "react";
+import ReviewMe, { Review } from "./ReviewMe";
 
 const FETCH_GUESTBOOK = gql`
   query FetchGuestbook {
@@ -50,7 +51,7 @@ export default function Guestbook() {
     <div className="mb-10 text-left">
       <form className="mb-5 relative" onSubmit={handleSubmit} ref={form}>
         {!data.me && (
-          <div className="absolute -inset-3 rounded-md bg-zinc-900/80 backdrop-blur-sm flex flex-col items-center justify-center">
+          <div className="absolute -inset-3 rounded-md bg-zinc-900/80 backdrop-blur-sm flex flex-col items-center justify-center z-10">
             <a
               href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`}
               className="btn"
@@ -78,14 +79,16 @@ export default function Guestbook() {
             </a>
           </div>
         )}
-        <textarea
-          cols={50}
-          rows={5}
-          name="message"
-          className="bg-zinc-800 rounded-lg px-3 py-2 border-transparent border-2 focus:outline-none focus:border-purple-600 transition-colors"
-          placeholder="Put your message here!"
-          required
-        ></textarea>
+        <ReviewMe id="guestbook" className="inline-block">
+          <textarea
+            cols={50}
+            rows={5}
+            name="message"
+            className="bg-zinc-800 rounded-lg px-3 py-2 border-transparent border-2 focus:outline-none focus:border-purple-600 transition-colors"
+            placeholder="Put your message here!"
+            required
+          ></textarea>
+        </ReviewMe>
 
         <div className="mt-3 flex items-center">
           <input

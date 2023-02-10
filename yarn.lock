@@ -117,6 +117,52 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/fontawesome-common-types@npm:6.3.0":
+  version: 6.3.0
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.3.0"
+  checksum: ece71539190abb17144861c58d65b6cd818d38a28cc3c9694325f5dca13739b2d78655e7bc1cba58cc13947f5ca80659e87c5c8bee7beb77d7f991e508312146
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-svg-core@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.3.0"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.3.0
+  checksum: 2479d4b0dc45bba2638b05ba816df91fad6331cd3254d846705a0c342dc12259724706066c71461809804b4f41f15425439cfbabc42d7918e6c26b2b467b4b59
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-regular-svg-icons@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "@fortawesome/free-regular-svg-icons@npm:6.3.0"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.3.0
+  checksum: 5efc11add7c312839625f2e25a82ed22c328b3fdc10ae2cccb865526728d388ddf23682a8ef68b1cc4b595e6c4a183e8cbe54a95ed99b750932412cf5967c0f5
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.3.0"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.3.0
+  checksum: 5cffcdb954f9ea8d48c6872118f21840f206d6279a6b803a31563e48fee34fbf5bc05848f5dedf07fc16f60910712c6bd0dc83f7a4e408cf062153a48022525d
+  languageName: node
+  linkType: hard
+
+"@fortawesome/react-fontawesome@npm:latest":
+  version: 0.2.0
+  resolution: "@fortawesome/react-fontawesome@npm:0.2.0"
+  dependencies:
+    prop-types: ^15.8.1
+  peerDependencies:
+    "@fortawesome/fontawesome-svg-core": ~1 || ~6
+    react: ">=16.3"
+  checksum: f652a0c2172e7b209e2d9e7e511f9b8c17abad85f55e0bd09bb1175ea1927693215da47eb6cd95b1f3a23bd124368553c677907fa76cb17c5093afc1fcffe338
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -2808,6 +2854,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "nanoid@npm:4.0.1"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: 21022a7910aa690cb05872c07f0c4a317dfe2aa79cc2b5e4ab41d17476e23d973d24c683206d6fa7e1b56bf657cf5dfbc0f1cac7d596bcd2dea0f49635316628
+  languageName: node
+  linkType: hard
+
 "natural-compare@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
@@ -3644,6 +3699,10 @@ __metadata:
   resolution: "site@workspace:."
   dependencies:
     "@apollo/client": ^3.6.8
+    "@fortawesome/fontawesome-svg-core": ^6.3.0
+    "@fortawesome/free-regular-svg-icons": ^6.3.0
+    "@fortawesome/free-solid-svg-icons": ^6.3.0
+    "@fortawesome/react-fontawesome": latest
     "@graphql-yoga/node": ^2.9.2
     "@prisma/client": 3.15.1
     "@types/cookie": ^0.5.1
@@ -3657,6 +3716,7 @@ __metadata:
     got: ^12.1.0
     graphql: ^16.5.0
     jose: ^4.8.1
+    nanoid: ^4.0.1
     next: ^12.1.6
     postcss: ^8.4.14
     prisma: ^3.15.1
