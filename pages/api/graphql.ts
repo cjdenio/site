@@ -24,6 +24,7 @@ const typeDefs = `
     item: String!
     stars: Float!
     reviewCount: Int!
+    myRating: Int
   }
 
   type Query {
@@ -60,10 +61,19 @@ const resolvers = {
         where: { item: item },
       });
 
+      const myRating =
+        context.userKey &&
+        (
+          await prisma.review.findUnique({
+            where: { userKey_item: { userKey: context.userKey, item: item } },
+          })
+        )?.stars;
+
       return {
         stars: result._avg.stars || 0,
         reviewCount: result._count,
         item,
+        myRating,
       };
     },
     async reviewItems() {
@@ -131,10 +141,19 @@ const resolvers = {
         where: { item: item },
       });
 
+      const myRating =
+        context.userKey &&
+        (
+          await prisma.review.findUnique({
+            where: { userKey_item: { userKey: context.userKey, item: item } },
+          })
+        )?.stars;
+
       return {
         stars: result._avg.stars || 0,
         reviewCount: result._count,
         item,
+        myRating,
       };
     },
   },

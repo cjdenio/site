@@ -12,6 +12,7 @@ const RATING = gql`
       item
       stars
       reviewCount
+      myRating
     }
   }
 `;
@@ -22,6 +23,7 @@ const REVIEW = gql`
       item
       stars
       reviewCount
+      myRating
     }
   }
 `;
@@ -45,7 +47,33 @@ export function Review({ id }) {
           onMouseEnter={() => _setStars(star)}
           onMouseLeave={() => _setStars(null)}
           onClick={() => {
-            review({ variables: { stars: star, item: id } });
+            review({
+              variables: { stars: star, item: id },
+              optimisticResponse: data && {
+                review: {
+                  item: id,
+                  __typename: "Rating",
+                  stars:
+                    data.rating.myRating == star
+                      ? (data.rating.stars * data.rating.reviewCount - star) /
+                          (data.rating.reviewCount - 1) || 0
+                      : data.rating.myRating
+                      ? (data.rating.stars * data.rating.reviewCount -
+                          data.rating.myRating +
+                          star) /
+                        data.rating.reviewCount
+                      : (data.rating.stars * data.rating.reviewCount + star) /
+                        (data.rating.reviewCount + 1),
+                  reviewCount:
+                    data.rating.myRating == star
+                      ? data.rating.reviewCount - 1
+                      : data.rating.myRating
+                      ? data.rating.reviewCount
+                      : data.rating.reviewCount + 1,
+                  myRating: data.rating.myRating == star ? null : star,
+                },
+              },
+            });
           }}
         />
       ))}
