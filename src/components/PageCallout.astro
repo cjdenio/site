@@ -1,0 +1,11 @@
+---
+interface Props {
+  for: string;
+}
+
+const { for: page } = Astro.props;
+---
+
+<a href={page} class="text-purple-400 hover:underline whitespace-nowrap"
+  ><slot /></a
+>

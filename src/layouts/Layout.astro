@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="b8ec57ac-2940-4ce9-ac09-b3d991f3784c"
+        />
+      )
+    }
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-zinc-900 text-zinc-300">
+    <slot />
+  </body>
+</html>
+
+<script>
+  import "@hotwired/turbo";
+</script>

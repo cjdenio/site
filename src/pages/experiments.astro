@@ -1,0 +1,48 @@
+---
+import Experiment from "../components/Experiment.astro";
+import Page from "../layouts/Page.astro";
+
+import figma from "../img/projects/figma.png";
+import underpass from "../img/projects/underpass.png";
+---
+
+<Page title="Caleb Denio" selected="experiments">
+  <div class="grid grid-cols-2 gap-6">
+    <Experiment
+      name="train quiz"
+      site="https://trains.clb.li"
+      emoji="🚂"
+      header="https://raw.githubusercontent.com/cjdenio/train-quiz/refs/heads/main/src/screenshot.png"
+      headerBg="bg-white"
+    >
+      A needlessly nerdy transit challenge
+    </Experiment>
+
+    <Experiment
+      name="figma pong"
+      site="https://www.figma.com/community/plugin/950871409613899955/pong"
+      emoji="🏓"
+      header={figma.src}
+    >
+      PONG IN FIGMA PONG IN FIGMA PONG IN IFIGMA
+    </Experiment>
+
+    <Experiment
+      name="underpass"
+      site="https://github.com/cjdenio/underpass"
+      emoji="🧑‍💻"
+      header={underpass.src}
+    >
+      An ngrok-like HTTP tunneling tool that can be self-hosted
+    </Experiment>
+
+    <Experiment
+      name="temp-email"
+      site="https://github.com/cjdenio/temp-email"
+      emoji="✉️"
+    >
+      A temporary email service (with its own SMTP server) built right into
+      Slack
+    </Experiment>
+  </div>
+</Page>
