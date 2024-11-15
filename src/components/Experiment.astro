@@ -10,18 +10,20 @@ const { name, site, emoji, header, headerBg } = Astro.props;
 ---
 
 <a href={site} target="_blank">
-  <div class="border border-zinc-600 rounded-lg h-full overflow-hidden group">
+  <div
+    class="border border-zinc-600 rounded-lg h-full overflow-hidden group flex xl:flex-col"
+  >
     {
       header ? (
         <div
           class:list={[
-            "w-full aspect-[2/1] bg-contain bg-center bg-no-repeat",
+            "hidden sm:block shrink-0 h-full w-36 xl:w-full xl:h-auto xl:aspect-[2/1] bg-cover xl:bg-contain bg-center bg-no-repeat",
             headerBg,
           ]}
           style={{ backgroundImage: `url("${header}")` }}
         />
       ) : (
-        <div class="w-full bg-zinc-600 aspect-[2/1]" />
+        <div class="hidden sm:block shrink-0 h-full w-36 xl:w-full xl:h-auto bg-zinc-600 xl:aspect-[2/1]" />
       )
     }
 
@@ -29,14 +31,14 @@ const { name, site, emoji, header, headerBg } = Astro.props;
       <img
         src={`https://emojicdn.elk.sh/${emoji}`}
         alt={name}
-        class="mr-5 rounded-md w-20"
+        class="mr-5 rounded-md w-20 max-[450px]:w-10"
       />
 
       <div class="text-left">
         <h3 class="text-3xl font-bold mb-2">
           <span class="align-middle">{name}</span>
           <svg
-            class="transition-opacity opacity-0 group-hover:opacity-100 inline fill-purple-400 ml-1 align-middle"
+            class="transition-opacity duration-100 oapcity-100 xl:opacity-0 group-hover:opacity-100 inline fill-purple-400 ml-1 align-middle"
             width="25"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"

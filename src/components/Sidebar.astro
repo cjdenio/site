@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+import PageCallout from "../components/PageCallout.astro";
+const avatars = await Astro.glob("../img/caleb/*.jpeg");
+---
+
+<div
+  class="flex-col items-center justify-center h-screen sticky top-0 py-20 mx-20 w-72 hidden lg:flex shrink-0 overflow-y-auto"
+>
+  <!-- prettier-ignore-attribute class -->
+  <div
+    id="photos"
+    data-turbo-permanent
+    class="w-72 h-72 mb-10 relative cursor-pointer shrink-0
+					group
+          [&:hover_>_:last-child]:-rotate-3
+          [&:hover_>_:nth-last-child(2)]:rotate-0
+          [&:hover_>_:nth-last-child(3)]:rotate-3"
+  >
+    {
+      avatars.map((avatar) => (
+        <Image
+          src={avatar.default}
+          alt="Caleb Denio"
+          class="rounded-xl absolute inset-0 origin-bottom-right transition group-hover:shadow-md group-hover:rotate-6"
+        />
+      ))
+    }
+  </div>
+  <h1 class="text-4xl font-bold mb-2">Caleb Denio</h1>
+  <h2 class="italic text-zinc-600">"A pretty good guy"</h2>
+
+  <div class="mt-10">
+    <p class="mb-3">
+      Hey. I'm Caleb: a software engineer, musician, and all-around boring guy
+      from the
+      <span class="whitespace-nowrap">New England</span> area.
+    </p>
+
+    <p>
+      I spend my time going on <PageCallout for="/"
+        >little adventures</PageCallout
+      >, building <PageCallout for="/experiments">useless stuff</PageCallout>,
+      and playing pickleball.
+    </p>
+  </div>
+
+  <p class="text-center text-zinc-600 mt-auto">
+    <a href="mailto:me@calebden.io" class="whitespace-nowrap">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        width="20"
+        class="inline fill-current"
+      >
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
+        ></path>
+      </svg>
+
+      me@calebden.io</a
+    >
+  </p>
+</div>
+
+<script>
+  const photos = document.getElementById("photos");
+
+  photos.addEventListener("click", () => {
+    {
+      photos.prepend(photos.removeChild(photos.lastElementChild));
+    }
+  });
+
+  photos.appendChild(
+    photos.removeChild(
+      photos.children[Math.floor(photos.children.length * Math.random())]
+    )
+  );
+</script>
