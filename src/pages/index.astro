@@ -11,10 +11,20 @@ import sunset from "../img/gallery/C490A096-BD6C-4FB7-B528-9879B80AFCD2_1_105_c.
 import ferry from "../img/gallery/FF9F89C0-54B0-43B5-86DA-343CBAE1DF2A_1_105_c.jpeg";
 import gong from "../img/gallery/DB790095-CEB6-4544-A308-9ED413B29001_1_105_c.jpeg";
 import steal from "../img/gallery/1C1E21F0-6A13-4A9E-8E03-1E7D5314F648_1_105_c.jpeg";
+import tickets from "../img/gallery/592C0F1D-0A27-498D-A7A6-B51CD71D1D1C_1_105_c.jpeg"
+import sunrise from "../img/gallery/FFBC6D4E-2586-4E4F-9652-655850278F3E_1_105_c.jpeg"
 ---
 
 <Page title="Caleb Denio" selected="gallery" fullBleed>
   <div class="grid grid-cols-2 xl:grid-cols-3 overflow-hidden rounded-lg">
+    <GalleryImage
+      src={sunrise.src}
+      description="Sunrise on the Northeast Corridor."
+    />
+    <GalleryImage
+      src={tickets.src}
+      align="bottom"
+    />
     <GalleryImage
       src={sauce.src}
       description="Gotta pull out the good stuff every now and then."
@@ -30,6 +40,7 @@ import steal from "../img/gallery/1C1E21F0-6A13-4A9E-8E03-1E7D5314F648_1_105_c.j
     <GalleryImage
       src={chocolate.src}
       description="Hot chocolate: a drink for any occasion."
+      align="bottom"
     />
     <GalleryImage src={mario.src} description="It's-a him!" />
     <GalleryImage
