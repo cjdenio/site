@@ -6,12 +6,12 @@ import defaultAvatar from "../img/caleb/1.jpeg";
 import Sidebar from "../components/Sidebar.astro";
 
 interface Props {
-  title: string;
+  title?: string;
   selected: string;
   fullBleed?: boolean;
 }
 
-const { title, selected, fullBleed = false } = Astro.props;
+const { title = "Caleb Denio", selected, fullBleed = false } = Astro.props;
 ---
 
 <Layout title={title}>
@@ -29,8 +29,8 @@ const { title, selected, fullBleed = false } = Astro.props;
             src={defaultAvatar}
             alt="Caleb Denio"
             class="w-16 rounded-lg"
-	    id="logo-mobile"
-	    data-turbo-permament
+            id="logo-mobile"
+            data-turbo-permanent
           />
           <h1 class="text-4xl font-bold text-center">Caleb Denio</h1>
         </div>

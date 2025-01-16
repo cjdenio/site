@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import PageCallout from "../components/PageCallout.astro";
-const avatars = await Astro.glob("../img/caleb/*.jpeg");
+const avatars = Object.values<{ default: ImageMetadata }>(
+  import.meta.glob("../img/caleb/*.jpeg", { eager: true }),
+);
 ---
 
 <div
@@ -75,7 +77,7 @@ const avatars = await Astro.glob("../img/caleb/*.jpeg");
 
   photos.appendChild(
     photos.removeChild(
-      photos.children[Math.floor(photos.children.length * Math.random())]
-    )
+      photos.children[Math.floor(photos.children.length * Math.random())],
+    ),
   );
 </script>
