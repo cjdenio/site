@@ -17,13 +17,13 @@ const { name, site, emoji, header, headerBg } = Astro.props;
       header ? (
         <div
           class:list={[
-            "hidden sm:block shrink-0 h-full w-36 xl:w-full xl:h-auto xl:aspect-[2/1] bg-cover xl:bg-contain bg-center bg-no-repeat",
+            "hidden sm:block shrink-0 h-full w-36 xl:w-full xl:h-auto xl:aspect-2/1 bg-cover xl:bg-contain bg-center bg-no-repeat",
             headerBg,
           ]}
           style={{ backgroundImage: `url("${header}")` }}
         />
       ) : (
-        <div class="hidden sm:block shrink-0 h-full w-36 xl:w-full xl:h-auto bg-zinc-600 xl:aspect-[2/1]" />
+        <div class="hidden sm:block shrink-0 h-full w-36 xl:w-full xl:h-auto bg-zinc-600 xl:aspect-2/1" />
       )
     }
 
