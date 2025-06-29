@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+import { getCollection, getEntry } from "astro:content";
+
+const postOffices = await getCollection("postOffices");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-zinc-900 text-zinc-300">
+    <div
+      id="map"
+      class="h-screen w-screen"
+      data-offices={JSON.stringify(postOffices.map((o) => o.data))}
+    >
+    </div>
+  </body>
+</html>
+
+<script>
+  import mapboxgl from "mapbox-gl";
+
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoiY2pkZW5pbyIsImEiOiJjbHdiMG52amcwaGd4MmttbWtlOWt5Mm1iIn0.GhHTt4W_mZpQcLYNkhsG_w";
+
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/dark-v11",
+    center: [-73.20551108714803, 44.47631173586277],
+    zoom: 6,
+  });
+
+  JSON.parse(document.getElementById("map").dataset.offices).forEach(
+    (office) => {
+      new mapboxgl.Marker({
+        color: office.visited ? "green" : "gray",
+        className: office.visited && "z-10",
+      })
+        .setLngLat([office.latitude, office.longitude])
+        .addTo(map);
+    }
+  );
+</script>
