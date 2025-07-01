@@ -40,8 +40,8 @@ const postOffices = await getCollection("postOffices");
   JSON.parse(document.getElementById("map").dataset.offices).forEach(
     (office) => {
       new mapboxgl.Marker({
-        color: office.visited ? "green" : "gray",
-        className: office.visited && "z-10",
+        color: office.visited === "true" ? "green" : "gray",
+        className: office.visited === "true" && "z-10",
       })
         .setLngLat([office.latitude, office.longitude])
         .addTo(map);
