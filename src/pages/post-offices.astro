@@ -13,6 +13,8 @@ const postOffices = await getCollection("postOffices");
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Caleb Visits Post Offices</title>
   </head>
   <body class="bg-zinc-900 text-zinc-300">
     <div
@@ -33,7 +35,8 @@ const postOffices = await getCollection("postOffices");
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/dark-v11",
-    center: [-73.20551108714803, 44.47631173586277],
+    //bounds: [[-114.041477, 41.993870], [-109.045171, 36.998962]],
+    center: [-111.55, 39.5],
     zoom: 6,
   });
 
