@@ -34,7 +34,8 @@ const postOffices = await getCollection("postOffices");
 
   const map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/dark-v11",
+    //style: "mapbox://styles/mapbox/dark-v11",
+    style: "mapbox://styles/mapbox/outdoors-v12",
     //bounds: [[-114.041477, 41.993870], [-109.045171, 36.998962]],
     center: [-111.55, 39.5],
     zoom: 6,
