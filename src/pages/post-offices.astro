@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
-import "mapbox-gl/dist/mapbox-gl.css";
+import "leaflet/dist/leaflet.css";
 
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 const postOffices = await getCollection("postOffices");
 ---
@@ -27,27 +27,27 @@ const postOffices = await getCollection("postOffices");
 </html>
 
 <script>
-  import mapboxgl from "mapbox-gl";
+  import L from "leaflet";
+  import type { CollectionEntry } from "astro:content";
 
-  mapboxgl.accessToken =
-    "pk.eyJ1IjoiY2pkZW5pbyIsImEiOiJjbHdiMG52amcwaGd4MmttbWtlOWt5Mm1iIn0.GhHTt4W_mZpQcLYNkhsG_w";
-
-  const map = new mapboxgl.Map({
-    container: "map",
-    //style: "mapbox://styles/mapbox/dark-v11",
-    style: "mapbox://styles/mapbox/outdoors-v12",
-    //bounds: [[-114.041477, 41.993870], [-109.045171, 36.998962]],
-    center: [-111.55, 39.5],
-    zoom: 6,
-  });
+  var map = L.map("map").setView([39.5, -111.55], 7);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
 
   JSON.parse(document.getElementById("map").dataset.offices).forEach(
-    (office) => {
-      new mapboxgl.Marker({
-        color: office.visited === "true" ? "green" : "gray",
-        className: office.visited === "true" && "z-10",
+    (office: CollectionEntry<"postOffices">["data"]) => {
+      const visited = office.visited === "true";
+
+      L.marker([parseFloat(office.longitude), parseFloat(office.latitude)], {
+        opacity: visited ? 1 : 0.4,
+        zIndexOffset: visited ? 1000 : undefined,
       })
-        .setLngLat([office.latitude, office.longitude])
+        .bindPopup(
+          `${office.name} (${visited ? "Visited!" : "Not yet visited"})`
+        )
         .addTo(map);
     }
   );

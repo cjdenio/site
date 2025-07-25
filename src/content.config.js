@@ -16,6 +16,7 @@ export const collections = {
     }),
     schema: z.object({
       id: z.string(),
+      name: z.string(),
       city: z.string(),
       state: z.string(),
       latitude: z.string(),
