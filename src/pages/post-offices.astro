@@ -30,6 +30,14 @@ const postOffices = await getCollection("postOffices");
   import L from "leaflet";
   import type { CollectionEntry } from "astro:content";
 
+  import icon from "leaflet/dist/images/marker-icon.png";
+  import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
+  import shadow from "leaflet/dist/images/marker-shadow.png";
+
+  L.Icon.Default.prototype.options.iconUrl = icon.src;
+  L.Icon.Default.prototype.options.iconRetinaUrl = iconRetina.src;
+  L.Icon.Default.prototype.options.shadowUrl = shadow.src;
+
   var map = L.map("map").setView([39.5, -111.55], 7);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
