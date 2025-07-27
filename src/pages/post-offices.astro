@@ -34,10 +34,6 @@ const postOffices = await getCollection("postOffices");
   import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
   import shadow from "leaflet/dist/images/marker-shadow.png";
 
-  L.Icon.Default.prototype.options.iconUrl = icon.src;
-  L.Icon.Default.prototype.options.iconRetinaUrl = iconRetina.src;
-  L.Icon.Default.prototype.options.shadowUrl = shadow.src;
-
   var map = L.map("map").setView([39.5, -111.55], 7);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
@@ -52,6 +48,12 @@ const postOffices = await getCollection("postOffices");
       L.marker([parseFloat(office.longitude), parseFloat(office.latitude)], {
         opacity: visited ? 1 : 0.4,
         zIndexOffset: visited ? 1000 : undefined,
+        icon: L.icon({
+          ...L.Icon.Default.prototype.options,
+          iconUrl: icon.src,
+          iconRetinaUrl: iconRetina.src,
+          shadowUrl: shadow.src,
+        }),
       })
         .bindPopup(
           `${office.name} (${visited ? "Visited!" : "Not yet visited"})`
