@@ -4,10 +4,20 @@ import Page from "../layouts/Page.astro";
 
 import figma from "../img/projects/figma.png";
 import underpass from "../img/projects/underpass.png";
+import uspsDecoder from "../img/projects/usps-decoder.png";
 ---
 
 <Page title="Caleb Denio" selected="experiments">
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+    <Experiment
+      name="usps decoder"
+      site="https://usps-decoder.clb.li"
+      emoji="📫"
+      header={uspsDecoder.src}
+      headerBg="bg-white"
+    >
+      toy decoder for barcodes on USPS mailpieces, written in Zig + WebAssembly
+    </Experiment>
     <Experiment
       name="fare art"
       site="https://fare-art.clb.li"
