@@ -10,10 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.12",
+    "@astrojs/rss": "^4.0.13",
     "@hotwired/turbo": "^8.0.5",
     "@tailwindcss/vite": "^4.0.15",
-    "astro": "^5.5.4",
+    "astro": "^5.15.3",
     "csv-parse": "^5.6.0",
     "leaflet": "^1.9.4",
     "lodash-es": "^4.17.21",
