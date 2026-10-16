@@ -5,10 +5,20 @@ import Page from "../layouts/Page.astro";
 import figma from "../img/projects/figma.png";
 import underpass from "../img/projects/underpass.png";
 import uspsDecoder from "../img/projects/usps-decoder.png";
+import crossword from "../img/projects/crossword.gif";
 ---
 
 <Page title="Caleb Denio" selected="experiments">
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+    <Experiment
+      name="crossword"
+      site="https://github.com/cjdenio/crossword"
+      emoji="🧩"
+      header={crossword.src}
+      headerBg="bg-white"
+    >
+      Terminal-based crossword player. Can load and play most .puz/.ipuz files.
+    </Experiment>
     <Experiment
       name="usps decoder"
       site="https://usps-decoder.clb.li"
