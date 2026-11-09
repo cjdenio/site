@@ -54,6 +54,22 @@ const { title = "Caleb Denio", selected, fullBleed = false } = Astro.props;
           >
             Experiments
           </a>
+          <a
+            href="/blog"
+            class:list={{
+              "text-zinc-600 hover:text-zinc-300": selected != "blog",
+              relative: true,
+            }}
+          >
+            Blog
+            {
+              selected != "blog" && (
+                <span class="hidden lg:block absolute -top-1 left-[calc(100%+5px)] bg-purple-600 font-bold rounded-full px-1 text-xs text-zinc-300 whitespace-nowrap">
+                  New and Fresh
+                </span>
+              )
+            }
+          </a>
         </nav>
       </div>
 

@@ -5,6 +5,10 @@ import { parse as csvParse } from "csv-parse/sync";
 export const collections = {
   blog: defineCollection({
     loader: glob({ pattern: "*.md", base: "./blog" }),
+    schema: z.object({
+      title: z.string(),
+      draft: z.boolean().default(false),
+    })
   }),
   postOffices: defineCollection({
     loader: file("src/data/post_offices.csv", {

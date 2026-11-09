@@ -1,0 +1,43 @@
+---
+import { getCollection, render, type RenderedContent } from "astro:content";
+import Page from "../../layouts/Page.astro";
+import * as _ from "lodash-es";
+import BlogSeeker from "../../components/BlogSeeker.astro";
+import { formattedPostDate } from "../../util";
+
+export async function getStaticPaths() {
+  const posts = _.orderBy(await getCollection("blog", e => !e.data.draft), "id", "asc");
+  return posts.map((post, index) => ({
+    params: { id: post.id },
+    props: {
+      post,
+      previous: index !== 0 && posts[index - 1],
+      next: index < posts.length - 1 && posts[index + 1],
+      date: formattedPostDate(post),
+    },
+  }));
+}
+const { post, previous, next, date } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Page selected="blog" title={`${post.data.title} | Caleb Denio`}>
+  <!-- <div
+    class="bg-zinc-800 py-4 px-5 rounded-xl border-l-4 border-purple-600 inline-block mt-5"
+  >
+    I sometimes write about technical things I find interesting. I hope you find
+    this interesting too.
+  </div> -->
+
+  <div class="my-10">
+    <h1 class="text-3xl font-bold">{post.data.title}</h1>
+    <p class="text-zinc-600">{date}</p>
+  </div>
+
+  <div class="prose prose-zinc prose-invert">
+    <Content />
+  </div>
+  <hr class="border-zinc-600 mt-10 mb-8" />
+
+  <BlogSeeker {previous} {next} />
+</Page>

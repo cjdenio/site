@@ -1,0 +1,25 @@
+---
+import Page from "../layouts/Page.astro";
+import { getCollection } from "astro:content";
+import * as _ from "lodash-es";
+import { formattedPostDate } from "../util";
+
+const posts = await getCollection("blog", e => !e.data.draft);
+---
+
+<Page selected="blog">
+  <ul class="space-y-5">
+    {
+      _.orderBy(posts, "id", "desc").map((post) => (
+        <li>
+          <a href={`/blog/${post.id}`}>
+            <h3>{formattedPostDate(post)}</h3>
+            <h2 class="text-3xl font-bold text-purple-400 hover:underline">
+              {post.data.title}
+            </h2>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Page>

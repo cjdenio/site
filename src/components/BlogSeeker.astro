@@ -1,0 +1,36 @@
+---
+const { previous, next } = Astro.props;
+---
+
+<div class="flex">
+  <div class="flex-1 text-left">
+    {
+      previous && (
+        <a
+          href={`/blog/${previous.id}`}
+          class="text-purple-400 hover:underline whitespace-nowrap"
+        >
+          ≪ <span class="italic">Previous: "{previous.data.title}"</span>
+        </a>
+      )
+    }
+  </div>
+
+  <a
+    class="flex-1 text-center text-purple-400 hover:underline whitespace-nowrap"
+    href="/blog">All Posts</a
+  >
+
+  <div class="flex-1 text-right">
+    {
+      next && (
+        <a
+          href={`/blog/${next.id}`}
+          class="text-purple-400 hover:underline whitespace-nowrap"
+        >
+          <span class="italic">Next: "{next.data.title}"</span> ≫
+        </a>
+      )
+    }
+  </div>
+</div>
